@@ -18,6 +18,27 @@ repositories {
 	mavenCentral()
 }
 
+ext {
+	set('springCloudVersion', "Hoxton.SR4")
+	dockerGroup = 'registry.cedesistemas.internal'
+	dockerRegistryPort = '5000'
+	versions = [
+			"gelf": "1.1.16",
+			"logstash_gelf": "1.13.0",
+			"springdoc": "1.4.3",
+			"mockito": "3.1.0",
+			"hamcrest": "2.1",
+			"restAssured": "4.1.2",
+			"lombok": "1.18.12",
+			"gson": "2.8.5",
+			"spring": "5.2.7.RELEASE",
+			"jackson": "2.11.1",
+			"jupiter": "5.6.2",
+			"graphql": "5.0.2",
+			"graphqltools": "5.2.4"
+	]
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive'
 	implementation 'org.springframework.boot:spring-boot-starter-hateoas'

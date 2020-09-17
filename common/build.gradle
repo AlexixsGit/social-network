@@ -5,12 +5,16 @@ plugins {
 group 'com.social'
 version '0.0.1-SNAPSHOT'
 
-sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    implementation "com.google.code.gson:gson:${versions.gson}"
+    implementation "org.springframework:spring-context:${versions.spring}"
+    implementation "com.fasterxml.jackson.core:jackson-databind:${versions.jackson}"
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
