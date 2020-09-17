@@ -1,0 +1,8 @@
+rootProject.name = 'network'
+include 'user-manager'
+include 'user-manager'
+include 'product-manager'
+include 'common'
+include 'purchase-manager'
+include 'likes-manager'
+
