@@ -37,4 +37,8 @@ public class UserService {
                 BeanUtils.copyProperties(user, currentUser, Util.getNullPropertyNames(user)));
         return foundUser.flatMap(this.userRepository::save);
     }
+
+    public Flux<User> getFriends(String id) {
+        return this.userRepository.getByFriendId(id);
+    }
 }

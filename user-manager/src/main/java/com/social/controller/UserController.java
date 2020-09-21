@@ -38,4 +38,9 @@ public class UserController {
         return this.userService.update(id, user);
     }
 
+    @GetMapping("/users/getFriends/{id}")
+    public Flux<User> getFriends(@PathVariable String id) {
+        return this.userService.getFriends(id);
+
+    }
 }
