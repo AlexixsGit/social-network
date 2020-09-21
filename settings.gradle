@@ -1,6 +1,6 @@
 rootProject.name = 'network'
 include 'product-manager'
-include 'common'
+include ':common'
 include 'purchase-manager'
 include 'likes-manager'
 include 'user-manager'
