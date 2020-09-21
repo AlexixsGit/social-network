@@ -1,24 +1,30 @@
-plugins {
-    id 'java'
-}
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: "org.springframework.boot"
 
 group 'com.social'
 version '0.0.1-SNAPSHOT'
 
-sourceCompatibility = '11'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation project(":common")
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-webflux', version: '2.3.3.RELEASE'
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-hateoas', version: '2.3.3.RELEASE'
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-mongodb-reactive', version: '2.3.3.RELEASE'
-
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-webflux', version: '2.3.3.RELEASE'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-hateoas', version: '2.3.3.RELEASE'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-mongodb-reactive', version: '2.3.3.RELEASE'
 
 
     compileOnly 'org.projectlombok:lombok:1.18.12'
     annotationProcessor 'org.projectlombok:lombok:1.18.12'
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    testImplementation "io.projectreactor:reactor-test"
+}
+
+test {
+    useJUnitPlatform()
 }
