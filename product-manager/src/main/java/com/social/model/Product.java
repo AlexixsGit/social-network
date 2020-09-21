@@ -13,6 +13,6 @@ public class Product {
     @Id
     private String id;
     private String name;
-    private Double price;
-    private Double likesCounter;
+    private double price;
+    private int likesCounter;
 }

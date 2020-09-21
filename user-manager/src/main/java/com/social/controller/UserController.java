@@ -2,6 +2,7 @@ package com.social.controller;
 
 import com.social.model.User;
 import com.social.service.UserService;
+import com.social.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -38,8 +39,8 @@ public class UserController {
         return this.userService.update(id, user);
     }
 
-    @GetMapping("/users/getFriends/{id}")
-    public Flux<User> getFriends(@PathVariable String id) {
+    @GetMapping("/users/findFriends/{id}")
+    public Flux<User> findFriends(@PathVariable String id) {
         return this.userService.getFriends(id);
 
     }
