@@ -11,6 +11,7 @@ repositories {
 }
 
 dependencies {
+    implementation project(":common")
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-webflux', version: '2.3.3.RELEASE'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-hateoas', version: '2.3.3.RELEASE'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-mongodb-reactive', version: '2.3.3.RELEASE'
