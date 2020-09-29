@@ -9,4 +9,6 @@ public interface PurchaseService {
 
     Flux<Purchase> findAll();
 
+    Mono<Void> delete(String id);
+
 }

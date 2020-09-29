@@ -9,30 +9,29 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.concurrent.atomic.AtomicReference;
-
 @RequiredArgsConstructor
 @Service
 public class PurchaseServiceImpl implements PurchaseService {
 
-    private WebClient client = WebClient.builder().baseUrl("https://localhost:8081").build();
+    private WebClient client = WebClient.builder().baseUrl("http://localhost:8081").build();
     private final PurchaseRepository purchaseRepository;
 
     @Override
     public Mono<Purchase> save(Purchase purchase) {
 
-        Mono<Product> productMono = client.get().uri("/products/" + purchase.getProductId())
-                .retrieve().bodyToMono(Product.class);
-
-        AtomicReference<Double> total = new AtomicReference<>(0d);
-        productMono.doOnNext(prod ->
-                total.set(prod.getPrice() * purchase.getQuantity()));
-        purchase.setTotal(total.get());
+        Product product = client.get().uri("/products/" + purchase.getProductId())
+                .retrieve().bodyToMono(Product.class).block();
+        purchase.setTotal(product.getPrice() * purchase.getQuantity());
         return this.purchaseRepository.save(purchase);
     }
 
     @Override
     public Flux<Purchase> findAll() {
         return this.purchaseRepository.findAll();
+    }
+
+    @Override
+    public Mono<Void> delete(String id) {
+        return this.purchaseRepository.deleteById(id);
     }
 }
