@@ -25,7 +25,7 @@ public class LikeServiceImpl implements LikeService {
     public Mono<Like> save(Like like) {
         like.setId(UUID.randomUUID().toString());
         Mono<Like> saved = this.likeRepository.save(like);
-        this.eventPublisherService.publishOrderEvent(saved.block());
+        this.eventPublisherService.publishLikeEvent(saved.block());
         return saved;
     }
 
