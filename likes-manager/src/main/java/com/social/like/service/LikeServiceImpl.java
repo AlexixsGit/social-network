@@ -7,11 +7,14 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @RequiredArgsConstructor
 @Service
 public class LikeServiceImpl implements LikeService {
 
     private final LikeRepository likeRepository;
+    private final EventPublisherService eventPublisherService;
 
     @Override
     public Flux<Like> findAll() {
@@ -20,7 +23,10 @@ public class LikeServiceImpl implements LikeService {
 
     @Override
     public Mono<Like> save(Like like) {
-        return this.likeRepository.save(like);
+        like.setId(UUID.randomUUID().toString());
+        Mono<Like> saved = this.likeRepository.save(like);
+        this.eventPublisherService.publishOrderEvent(saved.block());
+        return saved;
     }
 
     @Override
