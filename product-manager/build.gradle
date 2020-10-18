@@ -16,6 +16,7 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-webflux', version: '2.3.3.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-hateoas', version: '2.3.3.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-mongodb-reactive', version: '2.3.3.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-amqp', version: '2.3.3.RELEASE'
 
 
 
