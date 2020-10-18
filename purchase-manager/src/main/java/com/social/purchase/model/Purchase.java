@@ -15,5 +15,5 @@ public class Purchase {
     private String productId;
     private String userId;
     private Integer quantity;
-    private Double total;
+    private float total;
 }

@@ -14,7 +14,7 @@ public class PurchaseEvent {
     private String productId;
     private String userId;
     private Integer quantity;
-    private Double total;
+    private float total;
 
     @Override
     public String toString() {
