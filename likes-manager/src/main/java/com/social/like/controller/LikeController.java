@@ -1,7 +1,7 @@
 package com.social.like.controller;
 
-import com.social.like.service.LikeService;
 import com.social.like.model.Like;
+import com.social.like.service.LikeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -31,5 +31,10 @@ public class LikeController {
     @GetMapping("/likes/find-by-product-id/{productId}")
     public Flux<Like> findByProductId(@PathVariable String productId) {
         return this.likeService.findByProductId(productId);
+    }
+
+    @DeleteMapping("/likes/{likeId}")
+    public Mono<Void> delete(@PathVariable String likeId) {
+        return this.likeService.deleteById(likeId);
     }
 }

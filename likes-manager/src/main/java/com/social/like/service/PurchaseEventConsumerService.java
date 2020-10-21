@@ -2,6 +2,7 @@ package com.social.like.service;
 
 import com.social.common.event.PurchaseEvent;
 import com.social.like.model.Like;
+import com.social.like.model.LikeStatus;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
@@ -31,6 +32,7 @@ public class PurchaseEventConsumerService {
         like.setProductId(purchase.getProductId());
         like.setUserId(purchase.getUserId());
         like.setId(UUID.randomUUID().toString());
+        like.setStatus(LikeStatus.CREATED);
         this.likeService.save(like);
         log.info("Like created - id: {}", like.getId());
     }

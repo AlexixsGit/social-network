@@ -1,6 +1,7 @@
 package com.social.product.service;
 
 import com.social.common.event.LikeEvent;
+import com.social.like.model.LikeStatus;
 import com.social.product.model.Product;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,10 +29,16 @@ public class LikeEventConsumerService {
             return;
         }
 
-        //Raise likes counter of a product
+        //Raise likes counter of a product if like was created, instead, delete it
         Mono<Product> productMono = this.productService
-                .findById(like.getProductId()).doOnNext(prod ->
-                        prod.setLikesCounter(prod.getLikesCounter() + 1))
+                .findById(like.getProductId()).doOnNext(prod -> {
+
+                    if (like.getStatus().equals(LikeStatus.CREATED)) {
+                        prod.setLikesCounter(prod.getLikesCounter() + 1);
+                    } else {
+                        prod.setLikesCounter(prod.getLikesCounter() - 1);
+                    }
+                })
                 .flatMap(this.productService::save);
         productMono.subscribe();
     }

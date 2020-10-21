@@ -15,4 +15,5 @@ public class Like {
     private String id;
     private String productId;
     private String userId;
+    private String status;
 }

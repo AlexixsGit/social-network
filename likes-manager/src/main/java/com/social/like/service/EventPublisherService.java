@@ -20,6 +20,7 @@ public class EventPublisherService {
         LikeEvent event = LikeEvent.builder()
                 .productId(like.getProductId())
                 .userId(like.getUserId())
+                .status(like.getStatus())
                 .build();
 
         String json = event.toJSON();

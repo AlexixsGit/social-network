@@ -13,4 +13,5 @@ public interface LikeService {
 
     Flux<Like> findByProductId(String productId);
 
+    Mono<Void> deleteById(String likeId);
 }

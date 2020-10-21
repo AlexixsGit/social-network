@@ -1,6 +1,7 @@
 package com.social.common.event;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.social.like.model.LikeStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,6 +14,7 @@ import lombok.NoArgsConstructor;
 public class LikeEvent {
     private String productId;
     private String userId;
+    private String status;
 
     @Override
     public String toString() {
