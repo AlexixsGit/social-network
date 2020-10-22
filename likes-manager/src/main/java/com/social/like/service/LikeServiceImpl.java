@@ -44,14 +44,12 @@ public class LikeServiceImpl implements LikeService {
 
     @Override
     public Mono<Void> deleteById(String likeId) {
-        Like likeDeleted = this.likeRepository.findById(likeId)
-                .doOnNext(like -> like.setStatus(LikeStatus.DELETED))
-                .block();
+        this.likeRepository.findById(likeId)
+                .doOnNext(like -> {
+                    like.setStatus(LikeStatus.DELETED);
+                    this.eventPublisherService.publishLikeEvent(Objects.requireNonNull(like));
+                }).subscribe();
 
-        Mono<Void> likeMonoDeleted = this.likeRepository.deleteById(likeId);
-
-        this.eventPublisherService.publishLikeEvent(Objects.requireNonNull(likeDeleted));
-
-        return likeMonoDeleted;
+        return this.likeRepository.deleteById(likeId);
     }
 }
